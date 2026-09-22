@@ -65,7 +65,7 @@ func (r *TraceReader) FindTraceSummaries(ctx context.Context, query tracestore.T
 }
 
 func convertTraceSummaryFromDB(dbSummary dbmodel.TraceSummary) (tracestore.TraceSummary, error) {
-	traceID, err := convertTraceIDFromDB(dbSummary.TraceID)
+	traceID, err := dbSummary.TraceID.ToOTEL()
 	if err != nil {
 		return tracestore.TraceSummary{}, err
 	}
